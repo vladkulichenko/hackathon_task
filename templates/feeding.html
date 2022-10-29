@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% include 'header.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class = "row">
+        <div class="col md-12">
+            <div class = "jumbotron p-3">
+               <h2>
+                <a href="/">
+                Manage Animals </a>
+                <a href="/feeding">Feeding table</a></h2>
+                <table id="data" class="table table-hover table-dark">
+                    <tr>
+                        <th style="text-align: center; vertical-align: middle;">Id</th>
+                        <th style="text-align: center; vertical-align: middle;">Nickname</th>
+                        <th style="text-align: center; vertical-align: middle;">Type</th>
+                        <th style="text-align: center; vertical-align: middle;">Weight (in kilos)</th>
+                        <th style="text-align: center; vertical-align: middle;">Food per day (in grams)</th>
+                    </tr>
+
+                    {% for row in all_data %}
+
+                    <tr>
+                        <td style="text-align: center; vertical-align: middle;">{{row.id}}</td>
+                        <td style="text-align: center; vertical-align: middle;">{{row.nickname}}</td>
+                        <td style="text-align: center; vertical-align: middle;">{{row.animal_type}}</td>
+                        <td style="text-align: center; vertical-align: middle;">{{row.weight}}</td>
+                        <td style="text-align: center; vertical-align: middle;">{{calculate_the_food(weight=row.weight)}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="summary modal-body modal-title">Grand Total
+        <b style="text-align: center;">{{summary}}</b>
+    </div>
+</div>
+
+
+
+{% endblock content %}
